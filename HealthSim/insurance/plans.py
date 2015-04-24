@@ -236,7 +236,7 @@ class Plan:
 global_service_names = {
     'er': 'Emergency Room',
     'pcp': 'Primary Care Physician',
-    'generic', 'Generic Drugs',
+    'generic': 'Generic Drugs',
 }
 
 
