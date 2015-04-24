@@ -228,9 +228,13 @@ class Plan:
         hsa, out_of_pocket = threshold_overflow(hsa,
             in_network.out_of_pocket + out_of_network.out_of_pocket)
 
+        premiums = self.premium * months
+
         return SimResult(
+            out_of_pocket + premiums,
             out_of_pocket,
-            )
+            premiums,
+            hsa)
 
 
 global_service_names = {
@@ -239,8 +243,19 @@ global_service_names = {
     'generic': 'Generic Drugs',
 }
 
+def convert_services(service):
+    '''
+    Convert the services dict from the frontend request into list of services
+    '''
+    #TODO: families
+    for services in services['me']:
+        yield Service(
+            service['service'],
+            service['price'],
+            service['in_network'])
 
-class GlobalServices:
+
+class GlobalPlans:
     def __init__(self):
         self.plans = None
 
@@ -290,7 +305,12 @@ class GlobalServices:
             for service in plan.service_list():
                 yield global_service_names.get(service, service), service
 
+    def run_simulations(self, services):
+        services = list(convert_services(services))
+        return { plan: plan.run_sim(services) for plan in self.plans.values() }
 
-services = GlobalServices()
+
+services = GlobalPlans()
 load_plans = services.load_plans
 get_service_list = services.get_service_list
+run_simulations = services.run_simulations
