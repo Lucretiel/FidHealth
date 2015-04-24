@@ -17,7 +17,7 @@ def ajax_view_0(request):
         response_dict.update({'response_item_0': "I am item 0 :)", 'response_item_1' : "I am item 1 and I'm a loser :("})
         return HttpResponse(json.dumps(response_dict), content_type='application/json')
     else:
-        return Http404("IDK LOL")
+        raise Http404("IDK LOL")
 
 def get_service_list_view(request):
     if 'client_ajax_input_0' in request.POST:
@@ -26,5 +26,5 @@ def get_service_list_view(request):
         response_dict.update({"service_list" : [{"name": "Primary Care Physician", "service": "pcp"}, {"name": "Emergency Room", "service": "er"}]});
         return HttpResponse(json.dumps(response_dict), content_type='application/json')
     else:
-        return Http404("IDK")
+        raise Http404("IDK")
 
