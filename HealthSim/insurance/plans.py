@@ -11,6 +11,22 @@ def unroll(t):
     return decorator
 
 
+def copay(amount):
+    return lambda cost: min(cost, amount)
+
+
+def coinsure(percent):
+    mult = percent / 100
+    return lambda cost: cost * mult
+
+
+def covered():
+    return lambda cost: 0
+
+
+def not_covered():
+    return lambda cost: cost
+
 class OfferedService(namedtuple('OfferedService',
         ('type', 'ignore_deductible'))):
     '''
@@ -184,8 +200,9 @@ class Plan:
 
     @unroll(set)
     def service_list(self):
-        yield from self.in_network.service_list()
-        yield from self.out_of_network.service_list()
+        for network in self.in_network, self.out_of_network:
+            for service in network.service_list():
+                yield service
 
     def convert_services(self, services, network):
         '''
@@ -193,10 +210,11 @@ class Plan:
         network, and convert to the literal (cost, mod, ignore_deductible)
         format
         '''
-            for service in services:
-                if service.in_network == network.in_network:
-                    yield LiteralService.create(
-                        service, network.get_service(service.name))
+        for service in services:
+            if service.in_network == network.in_network:
+                yield LiteralService.create(
+                    service, network.get_service(service.name))
+
     def run_sim(self, services, months=12):
         services = tuple(services)
 
