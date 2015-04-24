@@ -25,9 +25,24 @@
         }
       }
     </style>
-    <script type='text/javascript' src="{% static 'jquery-1.11.1.min.js' %}"></script>
+    <!--<script type='text/javascript' src="{% static 'jquery-1.11.1.min.js' %}"></script>-->
+    <script type='text/javascript' src="C:/Users/Tanmay/Documents/GitHub/FidHealth/static/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+
+            var services = ["A", "B", "C"];
+
+            for (var i = 0; i < services.length; i++) {
+              $("#service_list ul").append("<li>  \
+                                              <form class=\"form-horizontal\"> \
+                                                  <h4 class=\"enter-number\">" + services[i] + 
+                                                  "<input type=\"text\" class=\"input-mini\" placeholder=\"0\"> \
+                                                  <button class=\"btn btn-mini disabled\" type=\"button\">Add</button> \
+                                                  </h4> \
+                                              </form> \
+                                            </li>");
+            }
+            
             $("#test_ajax_button").click(function() {
                 var ajax_input_0 = $("#test_ajax_input").val();
                 $.ajax({
@@ -48,6 +63,7 @@
                 return false;
             });
         });
+
     </script>
   </head>
   <body>
@@ -55,17 +71,11 @@
       <div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
+            <div id="service_list">
             <ul class="nav nav-list">
               <li class="nav-header">SERVICES</li>
-              <li> 
-                <form class="form-horizontal">
-                    <h4 class="enter-number">ER
-                    <input type="text" class="input-mini" placeholder="0">
-                    <button class="btn btn-mini disabled" type="button">Add</button>
-                    </h4>
-                </form>
-              </li>
             </ul>
+          </div>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
@@ -77,7 +87,7 @@
 
 
               <div class="span3">
-                <button class="btn btn-large btn-block btn-primary" type="button">GO</button>
+                <button id="test_ajax_button" class="btn btn-large btn-block btn-primary" type="button">GO</button>
               </div>
             </div>
           </div>
@@ -91,6 +101,11 @@
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="C:/Users/Tanmay/Documents/GitHub/FidHealth/static/bootstrap//bootstrap.min.js"></script>
 
+
+Hello, team No0bs!
+    <br>
+
+   <div id="result">
 
     <form action="." method="post">{% csrf_token %}
   </body>
