@@ -274,7 +274,10 @@ class GlobalServices:
                     deductible=1500,
                     out_of_pocket_max=2500,
                     in_network=True,
-                    services={}),
+                    services={
+                        'routine':
+                            OfferedService(covered(), ignore_deductible=True)
+                    }),
                 out_of_network=NetworkDetails(
                     deductible=2500,
                     out_of_pocket_max=5000,
