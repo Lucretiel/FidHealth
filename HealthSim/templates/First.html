@@ -58,8 +58,7 @@
               $("#service_list ul").append("<li>  \
                                               <form class=\"form-horizontal\"> \
                                                   <h4 class=\"enter-number\">" + services[i] + 
-                                                  "<input type=\"text\" class=\"input-mini\" placeholder=\"0\"> \
-                                                  <button class=\"btn btn-mini disabled\" type=\"button\">Add</button> \
+                                                  "<button class=\"btn btn-mini btn-primary\" onclick=\"add('"+ services[i] +"')\" type=\"button\" style=\"float: right;\">Add</button> \
                                                   </h4> \
                                               </form> \
                                             </li>");
@@ -85,7 +84,16 @@
                 return false;
             });
         });
-
+        
+        function add(name) {
+          alert("Hey");
+          $('#selected_services ul').append("<li>  \
+                                      <form class=\"form-horizontal\"> \
+                                          <h4 class=\"enter-number\">" + name + 
+                                          </h4> \
+                                      </form> \
+                                   </li>");
+        }
     </script>
   </head>
   <body>
@@ -102,9 +110,9 @@
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <div id="services" class="row-fluid">
-              <h4>YOUR SELECTED SERVICES</h4>
-
+            <h4>YOUR SELECTED SERVICES</h4>
+            <div id="selected_services" class="row-fluid">
+              <ul class="nav nav-list"></ul>
 
 
 
