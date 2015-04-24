@@ -42,7 +42,7 @@ class OfferedService(namedtuple('OfferedService',
     If ignore_deductible is True, the mod should be applied right away to the
     cost of the service.
     '''
-    def __new__(mod=not_covered(), ignore_deductible=False):
+    def __new__(cls, mod=not_covered(), ignore_deductible=False):
         return super().__new__(cls, mod, ignore_deductible)
 
 
