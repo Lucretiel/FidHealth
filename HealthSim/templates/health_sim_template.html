@@ -1,0 +1,55 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>HealthSim</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'HealthSimStyle.css' %}">
+    </head>
+
+<body>
+
+    <script type='text/javascript' src="{% static 'jquery-1.11.1.min.js' %}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#test_ajax_button").click(function() {
+                var ajax_input_0 = $("#test_ajax_input").val();
+                $.ajax({
+                    url : "/HealthSim/ajax_json_0",
+                    type : "POST",
+                    dataType: "json",
+                    data : {
+                        client_ajax_input_0 : ajax_input_0,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success : function(json) {
+                        $('#result').text( 'Received server response: ' + json.response_item_0 + "  " + json.response_item_1 );
+                    },
+                    error : function(xhr, errmsg, err) {
+                        alert(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+
+<h1>
+    LALALA I AM A HEADER
+</h1>
+    Hello, team No0bs!
+    <br>
+
+    <input id="test_ajax_input">
+    </input>
+
+    <button type="button" id="test_ajax_button">
+        Test Ajax :D
+    </button>
+
+    <div id="result">
+
+    <form action="." method="post">{% csrf_token %}
+</body>
