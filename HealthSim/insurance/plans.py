@@ -252,12 +252,18 @@ class GlobalServices:
                     deductible=0,
                     out_of_pocket_max=1500,
                     in_network=True,
-                    services=[]),
+                    services={
+                        'er': OfferedService(copay(75)),
+                        'pcp': OfferedService(copay(15))
+                    }),
                 out_of_network=NetworkDetails(
                     deductible=1000,
                     out_of_pocket_max=1500,
                     in_network=False,
-                    services=[])),
+                    services={
+                        'er': OfferedService(copay(75)),
+                        'pcp': OfferedService(coinsure(20))
+                    })),
             'HDHP': Plan(
                 premium=15,
                 hsa_contribution=625,
@@ -265,12 +271,12 @@ class GlobalServices:
                     deductible=1500,
                     out_of_pocket_max=2500,
                     in_network=True,
-                    services=[]),
+                    services={}),
                 out_of_network=NetworkDetails(
                     deductible=2500,
                     out_of_pocket_max=5000,
                     in_network=False,
-                    services=[]))}
+                    services={}))}
 
     @unroll(set)
     def get_service_list(self):
