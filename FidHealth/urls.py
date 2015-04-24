@@ -6,5 +6,3 @@ urlpatterns = [
     url(r'^HealthSim/', include('HealthSim.urls')),
 ]
 
-# Run this code once on Django startup.
-#TODO
