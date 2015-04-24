@@ -30,5 +30,6 @@ fake_plan_2 = FakePlan2()
 
 @unroll(set)
 def get_service_list():
-    yield from fake_plan.service_list()
-    yield from FakePlan2.service_list()
+    for plan in fake_plan, fake_plan_2:
+        for service in plan.service_list():
+            yield service
