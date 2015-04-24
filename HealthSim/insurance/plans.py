@@ -153,7 +153,7 @@ class NetworkDetails:
 
                 # Update the out of pocket maximum
                 # `pocket_cost` is the amount allowed by the out of pocket max.
-                `oop_maximum` is the remaining out of pocket maximum
+                # `oop_maximum` is the remaining out of pocket maximum
                 pocket_cost, oop_maximum = at_threshold(
                     oop_maximum,
                     pre_deduct)
