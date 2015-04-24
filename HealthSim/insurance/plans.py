@@ -235,7 +235,8 @@ class Plan:
 
 global_service_names = {
     'er': 'Emergency Room',
-    'pcp': 'Primary Care Physician'
+    'pcp': 'Primary Care Physician',
+    'generic', 'Generic Drugs',
 }
 
 
@@ -254,7 +255,8 @@ class GlobalServices:
                     in_network=True,
                     services={
                         'er': OfferedService(copay(75)),
-                        'pcp': OfferedService(copay(15))
+                        'pcp': OfferedService(copay(15)),
+                        'generic': OfferedService(copay(15)),
                     }),
                 out_of_network=NetworkDetails(
                     deductible=1000,
@@ -262,7 +264,8 @@ class GlobalServices:
                     in_network=False,
                     services={
                         'er': OfferedService(copay(75)),
-                        'pcp': OfferedService(coinsure(20))
+                        'pcp': OfferedService(coinsure(20)),
+                        'generic': OfferedService(not_covered()),
                     })),
             'HDHP': Plan(
                 premium=15,
