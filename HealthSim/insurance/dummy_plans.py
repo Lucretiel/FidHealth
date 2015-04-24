@@ -33,3 +33,6 @@ def get_service_list():
     for plan in fake_plan, fake_plan_2:
         for service in plan.service_list():
             yield service
+
+def load_plans():
+    print("Plans have totally been loaded. For real.")
