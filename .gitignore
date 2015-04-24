@@ -60,3 +60,5 @@ target/
 # Vim stuff:
 *.swp
 *.pyc
+
+env
