@@ -91,7 +91,7 @@
                         csrfmiddlewaretoken: '{{ csrf_token }}'
                     },
                     success : function(json) {
-                        $('#result').append("<div class=\"span3\"> </div> \
+                        $('#result').text("<div class=\"span3\"> </div> \
                                              <div class=\"span9\"> \
                                               <div class=\"row\"> \
                                                 <div class=\"span3\">Out of Pocket</div> \
@@ -150,14 +150,14 @@
 
         $(function() {  
             var window_height = $(window).height(),
-               content_height = window_height - 200;
+               content_height = window_height - 250;
 
             $('.mygrid-wrapper-div').height(content_height);
         });
 
         $( window ).resize(function() {
             var window_height = $(window).height(),
-               content_height = window_height - 200;
+               content_height = window_height - 250;
             $('.mygrid-wrapper-div').height(content_height);
         });
     </script>
@@ -169,21 +169,19 @@
         <div class="span3 mygrid-wrapper-div">
           <div class="well">
             <form role="form">
+              <h4>SERVICES</h4>
               <input id="filter" type="text" class="form-control" placeholder="Search...">
               <ul id="service_list" class="nav nav-list searchable">
-                <li class="nav-header">SERVICES</li>
               </ul>
             </form>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-          <div class="hero-unit">
-            <h4>YOUR SELECTED SERVICES</h4>
-            <ul id="selected_services" class="nav nav-list"></ul>
+          <h4>YOUR SELECTED SERVICES</h4>
+          <ul id="selected_services" class="nav nav-list"></ul>
 
-            <div class="span3">
-              <button id="go_button" class="btn btn-large btn-block btn-primary" type="button">GO</button>
-            </div>
+          <div class="span3">
+            <button id="go_button" class="btn btn-large btn-block btn-primary" type="button">GO</button>
           </div>
         </div>
         <hr>
