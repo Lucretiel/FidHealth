@@ -363,7 +363,14 @@ class GlobalPlans:
                         't' : OfferedService(covered()),
                         'b' : OfferedService(covered()),
                         'cis' : OfferedService(covered()),
-                        'tl' : OfferedService(covered())
+                        'tl' : OfferedService(covered()),
+
+                        'rg' : OfferedService(copay(15)),
+                        'rb' : OfferedService(copay(30)),
+                        'rnf' : OfferedService(copay(50)),
+                        'mog' : OfferedService(copay(30)),
+                        'mob' : OfferedService(copay(60)),
+                        'monf' : OfferedService(copay(100)),
                     }),
                 out_of_network=NetworkDetails(
                     deductible=1000,
@@ -407,9 +414,13 @@ class GlobalPlans:
                         'b' : OfferedService(coinsure(20)),
                         'mjat' : OfferedService(coinsure(20)),
                         'cis' : OfferedService(coinsure(20)),
+
                         'rg' : OfferedService(not_covered()),
                         'rb' : OfferedService(not_covered()),
                         'rnf' : OfferedService(not_covered()),
+                        'mog' : OfferedService(not_covered()),
+                        'mob' : OfferedService(not_covered()),
+                        'monf' : OfferedService(not_covered()),
                     })),
             'HDHP': Plan(
                 premium=15,
