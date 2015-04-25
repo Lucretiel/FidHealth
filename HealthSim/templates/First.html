@@ -48,8 +48,7 @@
                 success : function(json) {
                     var select_service = document.getElementById("select_service");
                     for (var i = 0; i < json.service_list.length; i++) {
-                        var escapedName = json.service_list[i].name.replace(/'/g, "\\'");
-                        services.push(escapedName);
+                        services.push(json.service_list[i].name);
                     }
                 },
                 error : function(xhr, errmsg, err) {
@@ -61,7 +60,7 @@
               $("#service_list").append("<li> \
                                           <div class=\"row\"> \
                                               <div name=\"name\" class=\"span11\">" + services[i] + "</div> \
-                                              <div class=\"span1\"><button class=\"btn btn-mini btn-primary\" onclick=\"addService('"+ services[i] +"')\" type=\"button\" style=\"float: right;\">Add</button></div> \
+                                              <div class=\"span1\"><button class=\"btn btn-mini btn-primary\" onclick=\"addService('"+ services[i].replace(/'/g, "\\'") +"')\" type=\"button\" style=\"float: right;\">Add</button></div> \
                                           </div> \
                                         </li>");
             }
