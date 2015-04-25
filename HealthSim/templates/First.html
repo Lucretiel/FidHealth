@@ -5,9 +5,9 @@
     <title>FidHealth</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link href="C:/Users/Nate/FidHealth/FidHealth/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <!--<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">-->
-    <!--<link rel="stylesheet" type="text/css" href="{% static 'HealthSimStyle.css' %}">-->
+    <!--<link href="C:/Users/Nate/FidHealth/FidHealth/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">-->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="{% static 'HealthSimStyle.css' %}">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -26,8 +26,8 @@
         }
       }
     </style>
-    <!--<script type='text/javascript' src="{% static 'jquery-1.11.1.min.js' %}"></script>-->
-    <script type='text/javascript' src="C:/Users/Nate/FidHealth/FidHealth/static/jquery-1.11.1.min.js"></script>
+    <script type='text/javascript' src="{% static 'jquery-1.11.1.min.js' %}"></script>
+    <!--<script type='text/javascript' src="C:/Users/Nate/FidHealth/FidHealth/static/jquery-1.11.1.min.js"></script>-->
     <script type="text/javascript">
         $(document).ready(function() {
             var ajax_service_list_input_0 = "1";
@@ -66,19 +66,28 @@
                 var ajax_input_0 = 1;
 
                 var myRequestedList = [];
+                var myRequestedDict = [];
 
                 $('#selected_services').children().each(function(){
-                  myRequestedList[j] = {"service": $(this).attr("name"),
+                  myRequestedList.push({"service": $(this).attr("name"),
                                         "price": $(this).find("input[name='cost']").val(),
-                                        "in_network": $(this).find("input[name='in_network']").is(":checked")};
+                                        "in_network": $(this).find("input[name='in_network']").is(":checked")});
                 });
+
+                myRequestedDict.me = myRequestedList;
+                console.log(myRequestedList);
+                console.log(JSON.stringify(myRequestedList));
+                console.log(myRequestedDict);
+
 
                 $.ajax({
                     url : "/HealthSim/ajax_json_0",
                     type : "POST",
                     dataType: "json",
                     data : {
-                        "me" : { myRequestedList },
+                        client_ajax_input_0 : ajax_input_0,
+                        //client_input_dict : myRequestedDict,
+                        client_input_dict : JSON.stringify(myRequestedList),
                         csrfmiddlewaretoken: '{{ csrf_token }}'
                     },
                     success : function(json) {
@@ -112,7 +121,7 @@
         }
 
     </script>
-    <!--<img src="{% static 'Symbol.png' %}" width="1800" height="14000" />-->
+    <img src="{% static 'Symbol.png' %}" width="1800" height="14000" />-
   </head>
   <body>
     <div class="container-fluid">
@@ -141,8 +150,8 @@
 
     </div><!--/.fluid-container-->
     <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="C:/Users/Nate/FidHealth/FidHealth/static/bootstrap//bootstrap.min.js"></script>
-    <!--<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>-->
+    <!--<script src="C:/Users/Nate/FidHealth/FidHealth/static/bootstrap//bootstrap.min.js"></script>-->
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 
 
 Hello, team No0bs!
