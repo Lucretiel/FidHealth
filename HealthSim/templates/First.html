@@ -53,13 +53,12 @@
             });
 
             for (var i = 0; i < services.length; i++) {
-              $("#service_list ul").append("<li> \
-                                              <form class=\"form-horizontal\"> \
-                                                  <h4 class=\"enter-number\">" + services[i] + 
-                                                  "<button class=\"btn btn-mini btn-primary\" onclick=\"addService('"+ services[i] +"')\" type=\"button\" style=\"float: right;\">Add</button> \
-                                                  </h4> \
-                                              </form> \
-                                            </li>");
+              $("#service_list").append("<li> \
+                                          <div class=\"row\"> \
+                                              <div class=\"span11\">" + services[i] + "</div> \
+                                              <div class=\"span1\"><button class=\"btn btn-mini btn-primary\" onclick=\"addService('"+ services[i] +"')\" type=\"button\" style=\"float: right;\">Add</button></div> \
+                                          </div> \
+                                        </li>");
             }
 
             $("#go_button").click(function() {
@@ -98,10 +97,10 @@
         function addService(name) {
           $('#selected_services').append("<li id=\"" + (++counter) + "\" name=\"" + name + "\"> \
                                             <div class=\"row\"> \
-                                              " + name + " \
-                                              Cost: <input type=\"text\" name=\"cost\" value=\"10\"> \
-                                              In network: <input type=\"checkbox\" name=\"in_network\" checked> \
-                                              <button class=\"btn btn-mini btn-primary\" onclick=\"removeService(" + counter + ")\" type=\"button\" style=\"float: right;\">Remove</button> \
+                                              <div class=\"span5\">" + name + "</div> \
+                                              <div class=\"span4\">Cost: <input type=\"text\" name=\"cost\" value=\"10\"></div> \
+                                              <div class=\"span2\">In network: <input type=\"checkbox\" name=\"in_network\" checked></div> \
+                                              <div class=\"span1\"><button class=\"btn btn-mini btn-primary\" onclick=\"removeService(" + counter + ")\" type=\"button\" style=\"float: right;\">Remove</button></div> \
                                             </div> \
                                           </li>");
         }
@@ -119,12 +118,10 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
-          <div class="well sidebar-nav">
-            <div id="service_list">
-              <ul class="nav nav-list">
-                <li class="nav-header">SERVICES</li>
-              </ul>
-            </div>
+          <div class="well">
+            <ul id="service_list" class="nav nav-list">
+              <li class="nav-header">SERVICES</li>
+            </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
