@@ -5,7 +5,7 @@
     <title>FidHealth</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link href="C:/Users/Tanmay/Documents/GitHub/FidHealth/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="C:/Users/Nate/FidHealth/FidHealth/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" type="text/css" href="{% static 'HealthSimStyle.css' %}">
     <style type="text/css">
       body {
@@ -26,22 +26,22 @@
       }
     </style>
     <!--<script type='text/javascript' src="{% static 'jquery-1.11.1.min.js' %}"></script>-->
-    <script type='text/javascript' src="C:/Users/Tanmay/Documents/GitHub/FidHealth/static/jquery-1.11.1.min.js"></script>
+    <script type='text/javascript' src="C:/Users/Nate/FidHealth/FidHealth/static/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
 
             var services = ["A", "B", "C"];
 
             for (var i = 0; i < services.length; i++) {
-              $("#service_list ul").append("<li>  \
+              $("#service_list ul").append("<li> \
                                               <form class=\"form-horizontal\"> \
                                                   <h4 class=\"enter-number\">" + services[i] + 
-                                                  "<button class=\"btn btn-mini btn-primary\" onclick=\"add('"+ services[i] +"')\" type=\"button\" style=\"float: right;\">Add</button> \
+                                                  "<button class=\"btn btn-mini btn-primary\" onclick=\"addService('"+ services[i] +"')\" type=\"button\" style=\"float: right;\">Add</button> \
                                                   </h4> \
                                               </form> \
                                             </li>");
             }
-            
+
             $("#test_ajax_button").click(function() {
                 var ajax_input_0 = $("#test_ajax_input").val();
                 $.ajax({
@@ -62,16 +62,25 @@
                 return false;
             });
         });
-        
-        function add(name) {
-          alert("Hey");
-          $('#selected_services ul').append("<li>  \
+
+        var counter = 0;
+
+        function addService(name) {
+          $('#selected_services').append("<li id=\"" + (++counter) + "\"> \
                                       <form class=\"form-horizontal\"> \
                                           <h4 class=\"enter-number\">" + name + 
+                                          "<button class=\"btn btn-mini btn-primary\" onclick=\"removeService(" + counter + ")\" type=\"button\" style=\"float: right;\">Remove</button> \
                                           </h4> \
                                       </form> \
                                    </li>");
         }
+
+        function removeService(id) {
+          $('#selected_services').children().filter(function() {
+            return this.id==id;
+          }).remove();
+        }
+
     </script>
   </head>
   <body>
@@ -80,23 +89,21 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <div id="service_list">
-            <ul class="nav nav-list">
-              <li class="nav-header">SERVICES</li>
-            </ul>
-          </div>
+              <ul class="nav nav-list">
+                <li class="nav-header">SERVICES</li>
+              </ul>
+            </div>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
             <h4>YOUR SELECTED SERVICES</h4>
-            <div id="selected_services" class="row-fluid">
-              <ul class="nav nav-list"></ul>
+              <ul id="selected_services" class="nav nav-list"></ul>
 
 
 
               <div class="span3">
                 <button id="test_ajax_button" class="btn btn-large btn-block btn-primary" type="button">GO</button>
-              </div>
             </div>
           </div>
       <hr>
@@ -107,7 +114,7 @@
 
     </div><!--/.fluid-container-->
     <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="C:/Users/Tanmay/Documents/GitHub/FidHealth/static/bootstrap//bootstrap.min.js"></script>
+    <script src="C:/Users/Nate/FidHealth/FidHealth/static/bootstrap//bootstrap.min.js"></script>
 
 
 Hello, team No0bs!
