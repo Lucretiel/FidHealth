@@ -173,6 +173,8 @@ class NetworkDetails:
                     service,
                     self.get_service(service.name))
 
+            cost = service.cost
+
             if not service.ignore_deductible:
                 # Apply the deductible
                 # `pre_deduct` is the amount applied to the deductible.
@@ -181,7 +183,7 @@ class NetworkDetails:
                 print("Paying {} toward deductible".format(service.cost))
                 pre_deduct, deductible, cost = apply_to_threshold(
                     deductible,
-                    service.cost)
+                    cost)
                 print("{} deductible remaining".format(deductible))
 
                 # Update the out of pocket maximum
