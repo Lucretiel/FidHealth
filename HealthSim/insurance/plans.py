@@ -54,7 +54,7 @@ class LiteralService(namedtuple('LiteralService',
     is the object used to actually perform the calculations.
     '''
     @classmethod
-    def create(requested_service, offered_service):
+    def create(cls, requested_service, offered_service):
         '''
         Combine a requested_service and an offered_service
         '''
