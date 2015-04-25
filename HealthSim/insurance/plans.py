@@ -297,7 +297,7 @@ def convert_services(service):
     Convert the services dict from the frontend request into list of services
     '''
     #TODO: families
-    for services in services['me']:
+    for service in services['me']:
         yield Service(
             service['service'],
             service['price'],
