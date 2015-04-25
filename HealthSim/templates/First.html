@@ -48,7 +48,8 @@
                 success : function(json) {
                     var select_service = document.getElementById("select_service");
                     for (var i = 0; i < json.service_list.length; i++) {
-                        services.push(json.service_list[i].name);
+                        var escapedName = json.service_list[i].name.replace(/'/g, "\\'");
+                        services.push(escapedName);
                     }
                 },
                 error : function(xhr, errmsg, err) {
