@@ -135,6 +135,8 @@ class SimResult(namedtuple('SimResult',
     premiums is the total amount paid for just premiums
     hsa_remaining is the amount remaining in the hsa.
     '''
+    def to_dict(self):
+        return {field: value for field, value in zip(self._fields, self)}
 
 
 class NetworkDetails:
@@ -564,8 +566,7 @@ class GlobalPlans:
     @dump_trace
     def run_simulations(self, services):
         services = list(convert_services(services))
-        print("")
-        return { plan_name: plan.run_sim(services)._asdict()
+        return { plan_name: plan.run_sim(services).to_dict()
             for plan_name, plan in self.plans.items() }
 
 
