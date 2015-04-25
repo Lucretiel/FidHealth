@@ -14,6 +14,31 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+            var ajax_service_list_input_0 = "1";
+            $.ajax({
+                url : "/HealthSim/get_service_list",
+                type : "POST",
+                dataType: "json",
+                data : {
+                    client_ajax_input_0 : ajax_service_list_input_0,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success : function(json) {
+                    $('#result').text( 'Received service list: ' + json.service_list[0]);
+                    var select_service = document.getElementById("select_service");
+                    for (var i = 0; i < json.service_list.length; i++) {
+                        var opt = json.service_list[i].name;
+                        var element = document.createElement("option");
+                        element.textContent = opt;
+                        element.value = opt;
+                        select_service.appendChild(element);
+                    }
+                },
+                error : function(xhr, errmsg, err) {
+                    alert(xhr.status + ": " + xhr.responseText);
+                }
+            });
+            //return false;
             $("#test_ajax_button").click(function() {
                 var ajax_input_0 = $("#test_ajax_input").val();
                 $.ajax({
@@ -49,7 +74,11 @@
         Test Ajax :D
     </button>
 
-    <div id="result">
+    <div id="result"></div>
+    <br>
+    <select id="select_service">
+        <option>Select service</option>
+    </select>
 
     <form action="." method="post">{% csrf_token %}
 </body>
