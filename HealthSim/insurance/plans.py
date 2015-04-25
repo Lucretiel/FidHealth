@@ -155,7 +155,7 @@ class NetworkDetails:
         return self.services.keys()
 
     def get_service(self, service_name):
-        return self.services.get(service_name, OfferedService())
+        return self.services[service_name]
 
     def run_sim(self, services):
         deductible = self.deductible
