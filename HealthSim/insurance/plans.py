@@ -238,8 +238,6 @@ class Plan:
 
 
 global_service_names = {
-    'pcp': 'Primary Care Physician',
-    'generic': 'Generic Drugs',
     'rapei' : 'Routine Adult Physical Exams/Immunizations',
     'rwcei' : 'Routing Well Child Exams/Immunizations',
     'rgce' : 'Routine Gynecological Care Exams',
@@ -285,9 +283,12 @@ global_service_names = {
     'cis' : 'Comprehensive Infertility Services',
     'v' : 'Vasectomy',
     'tl' : 'Tubal Ligation',
-    'r' : 'Retail',
-    'mo' : 'Mail Order',
-
+    'rg' : "Retail Generic Drugs",
+    'rb' : "Retail Brand Name Drugs",
+    'rnf' : "Retail Non-Formulary Brand-name drugs"
+    'mog' : "Mail Order Generic Drugs",
+    'mob' : "Mail Order Brand Name Drugs",
+    'monf' : "Mail Order Non-Formulary Brand-name drugs"
 
 }
 
@@ -338,14 +339,129 @@ class GlobalPlans:
                     out_of_pocket_max=2500,
                     in_network=True,
                     services={
-                        'routine':
-                            OfferedService(covered(), ignore_deductible=True)
+                        'rapei' : OfferedService(covered(), True),
+                        'rwcei' : OfferedService(covered(), True),
+                        'rgce' : OfferedService(covered(), True),
+                        'rm' : OfferedService(covered(), True),
+                        'wh' : OfferedService(covered(), True),
+                        'rdrepsat' : OfferedService(covered(), True),
+                        'ccs' : OfferedService(covered(), True),
+                        'rhs' : OfferedService(covered(), True),
+
+                        'ovtpcp' : OfferedService(covered()),
+                        'sov' : OfferedService(covered()),
+                        'pnm' : OfferedService(covered(), True),
+                        'ahe' : OfferedService(covered()),
+                        'at' : OfferedService(covered()),
+                        'ai' : OfferedService(covered()),
+
+                        'dlaxr' : OfferedService(covered()),
+
+                        'ucp' : OfferedService(covered()),
+                        'nuuoucp' : OfferedService(not_covered()),
+                        'er': OfferedService(covered()),
+                        'neciae' : OfferedService(not_covered()),
+                        'a' : OfferedService(covered()),
+
+                        'ic' : OfferedService(covered()),
+                        'imc' : OfferedService(covered()),
+                        'os' : OfferedService(covered()),
+                        'ohe' : OfferedService(covered()),
+
+                        'mhsi' : OfferedService(covered()),
+                        'mhso' : OfferedService(covered()),
+                        'adasi' : OfferedService(covered()),
+                        'adaso' : OfferedService(covered()),
+
+                        'cf' : OfferedService(covered()),
+                        'hhc' : OfferedService(covered()),
+                        'hci' : OfferedService(covered()),
+                        'hco' : OfferedService(covered()),
+                        'ostr' : OfferedService(covered()),
+                        'dme' : OfferedService(covered()),
+                        'ds' : OfferedService(covered()),
+                        'cdadnoaap' : OfferedService(covered()),
+                        'gfdaawc' : OfferedService(covered(), True),
+                        't' : OfferedService(covered()),
+                        'b' : OfferedService(covered()),
+                        # 'mjat' :
+                        # 'ooad' :
+                        # 'it' :
+                        'cis' : OfferedService(covered()),
+                        # 'v' :
+                        'tl' : OfferedService(covered(), True),
+
+                        'rg' : OfferedService(copay(10)),
+                        'rb' : OfferedService(copay(25)),
+                        'rnf' : OfferedService(copay(50)),
+                        'mog' : OfferedService(copay(20)),
+                        'mob' : OfferedService(copay(50)),
+                        'monf' : OfferedService(copay(100)),
                     }),
                 out_of_network=NetworkDetails(
                     deductible=2500,
                     out_of_pocket_max=5000,
                     in_network=False,
-                    services={}))}
+                    services={
+                        'rapei' : OfferedService(coinsure(20)),
+                        'rwcei' : OfferedService(coinsure(20)),
+                        'rgce' : OfferedService(coinsure(20)),
+                        'rm' : OfferedService(coinsure(20)),
+                        'wh' : OfferedService(coinsure(20)),
+                        'rdrepsat' : OfferedService(coinsure(20)),
+                        'ccs' : OfferedService(coinsure(20)),
+                        'rhs' : OfferedService(coinsure(20)),
+
+                        'ovtpcp' : OfferedService(coinsure(20)),
+                        'sov' : OfferedService(coinsure(20)),
+                        'pnm' : OfferedService(coinsure(20)),
+                        'ahe' : OfferedService(coinsure(20)),
+                        'at' : OfferedService(coinsure(20)),
+                        'ai' : OfferedService(coinsure(20)),
+
+                        'dlaxr' : OfferedService(coinsure(20)),
+
+                        'ucp' : OfferedService(coinsure(20)),
+                        'nuuoucp' : OfferedService(not_covered()),
+                        'er': OfferedService(covered()),
+                        'neciae' : OfferedService(not_covered()),
+                        'a' : OfferedService(covered()),
+
+                        'ic' : OfferedService(coinsure(20)),
+                        'imc' : OfferedService(coinsure(20)),
+                        'os' : OfferedService(coinsure(20)),
+                        'ohe' : OfferedService(coinsure(20)),
+
+                        'mhsi' : OfferedService(coinsure(20)),
+                        'mhso' : OfferedService(coinsure(20)),
+                        'adasi' : OfferedService(coinsure(20)),
+                        'adaso' : OfferedService(coinsure(20)),
+
+                        'cf' : OfferedService(covered()),
+                        'hhc' : OfferedService(covered()),
+                        'hci' : OfferedService(covered()),
+                        'hco' : OfferedService(coinsure(20)),
+                        'ostr' : OfferedService(coinsure(20)),
+                        'dme' : OfferedService(covered()),
+                        'ds' : OfferedService(covered()),
+                        'cdadnoaap' : OfferedService(covered()),
+                        'gfdaawc' : OfferedService(not_covered()),
+                        't' : OfferedService(coinsure(20)),
+                        'b' : OfferedService(coinsure(20)),
+                        # 'mjat' :
+                        # 'ooad' :
+                        # 'it' :
+                        'cis' : OfferedService(coinsure(20)),
+                        # 'v' :
+                        #'tl' :
+
+                        'rg' : OfferedService(not_covered()),
+                        'rb' : OfferedService(not_covered()),
+                        'rnf' : OfferedService(not_covered()),
+                        'mog' : OfferedService(not_covered()),
+                        'mob' : OfferedService(not_covered()),
+                        'monf' : OfferedService(not_covered()),
+                    }))}
 
     @unroll(set)
     def get_service_list(self):
@@ -358,7 +474,7 @@ class GlobalPlans:
         return { plan: plan.run_sim(services) for plan in self.plans.values() }
 
 
-services = GlobalPlans()
-load_plans = services.load_plans
-get_service_list = services.get_service_list
-run_simulations = services.run_simulations
+plans = GlobalPlans()
+load_plans = plans.load_plans
+get_service_list = plans.get_service_list
+run_simulations = plans.run_simulations
