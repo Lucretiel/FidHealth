@@ -1,6 +1,6 @@
 from collections import namedtuple
 from functools import wraps
-
+import traceback
 
 def unroll(t):
     def decorator(func):
@@ -9,6 +9,16 @@ def unroll(t):
             return t(func(*args, **kwargs))
         return wrapper
     return decorator
+
+
+def dump_trace(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception:
+            traceback.print_exc()
+            raise
 
 
 def copay(amount):
@@ -533,15 +543,18 @@ class GlobalPlans:
                     }))}
 
     @unroll(set)
+    @dump_trace
     def get_service_list(self):
         for plan in self.plans.values():
             for service in plan.service_list():
                 yield global_service_names.get(service, service), service
 
+    @dump_trace
     def run_simulations(self, services):
         services = list(convert_services(services))
-        return { plan: plan.run_sim(services)._asdict()
-            for plan in self.plans.values() }
+        print("")
+        return { plan_name: plan.run_sim(services)._asdict()
+            for plan_name, plan in self.plans.items() }
 
 
 plans = GlobalPlans()
