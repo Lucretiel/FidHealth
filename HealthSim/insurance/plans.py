@@ -285,10 +285,10 @@ global_service_names = {
     'tl' : 'Tubal Ligation',
     'rg' : "Retail Generic Drugs",
     'rb' : "Retail Brand Name Drugs",
-    'rnf' : "Retail Non-Formulary Brand-name drugs"
+    'rnf' : "Retail Non-Formulary Brand-name drugs",
     'mog' : "Mail Order Generic Drugs",
     'mob' : "Mail Order Brand Name Drugs",
-    'monf' : "Mail Order Non-Formulary Brand-name drugs"
+    'monf' : "Mail Order Non-Formulary Brand-name drugs",
 
 }
 
@@ -340,7 +340,7 @@ class GlobalPlans:
                         'os' : OfferedService(covered()),
                         'ohe' : OfferedService(coverd()),
                         'mhsi' : OfferedService(copay(100)),
-                        'mhso' : OfferedService(copay(30),
+                        'mhso' : OfferedService(copay(30)),
                         'adasi' : OfferedService(copay(100)),
                         'adaso' : OfferedService(copay(30)),
                         'hhc' : OfferedService(covered()),
