@@ -91,7 +91,27 @@
                         csrfmiddlewaretoken: '{{ csrf_token }}'
                     },
                     success : function(json) {
-                        $('#result').text( 'Received server response: ' + json.HDHP['out_of_pocket'] + "  " + json.POS );
+                        $('#result').append("<div class=\"span3\"> </div> \
+                                             <div class=\"span9\"> \
+                                              <div class=\"row\"> \
+                                                <div class=\"span3\">Out of Pocket</div> \
+                                                <div class=\"span3\">Services</div> \
+                                                <div class=\"span3\">Premiums</div> \
+                                                <div class=\"span3\">HSA-remaining</div> \
+                                              </div>\
+                                              <div class=\"row\"> \
+                                                <div class=\"span3\">" + json.HDHP['out_of_pocket'] + "</div> \
+                                                <div class=\"span3\">" + json.HDHP['services'] + "</div> \
+                                                <div class=\"span3\">" + json.HDHP['premiums'] + "</div> \
+                                                <div class=\"span3\">" + json.HDHP['hsa_remaining'] + "</div> \
+                                              </div> \
+                                              <div class=\"row\"> \
+                                                <div class=\"span3\">" + json.POS['out_of_pocket'] + "</div> \
+                                                <div class=\"span3\">" + json.POS['services'] + "</div> \
+                                                <div class=\"span3\">" + json.POS['premiums'] + "</div> \
+                                                <div class=\"span3\">" + json.POS['hsa_remaining'] + "</div> \
+                                              </div> \
+                                             </div>");
                     },
                     error : function(xhr, errmsg, err) {
                         alert(xhr.status + ": " + xhr.responseText);
@@ -159,25 +179,28 @@
         <div class="span9">
           <div class="hero-unit">
             <h4>YOUR SELECTED SERVICES</h4>
-              <ul id="selected_services" class="nav nav-list"></ul>
+            <ul id="selected_services" class="nav nav-list"></ul>
 
-              <div class="span3">
-                <button id="go_button" class="btn btn-large btn-block btn-primary" type="button">GO</button>
+            <div class="span3">
+              <button id="go_button" class="btn btn-large btn-block btn-primary" type="button">GO</button>
             </div>
           </div>
-      <hr>
+        </div>
+        <hr>
 
-      <footer>
-        <p>&copy; Fidessa 2015</p>
-      </footer>
+        <footer>
+          <p>&copy; Fidessa 2015</p>
+        </footer>
 
-    </div><!--/.fluid-container-->
+      </div><!--/.fluid-container-->
+    </div>
     <!--<script src="C:/Users/Nate/FidHealth/FidHealth/static/bootstrap//bootstrap.min.js"></script>-->
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 
     <br>
 
-   <div id="result">
+    <div id="result">
+    </div>
 
     <form action="." method="post">{% csrf_token %}
   </body>
