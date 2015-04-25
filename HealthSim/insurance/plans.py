@@ -28,7 +28,7 @@ def not_covered():
     return lambda cost: cost
 
 class OfferedService(namedtuple('OfferedService',
-        ('type', 'ignore_deductible'))):
+        ('mod', 'ignore_deductible'))):
     '''
     OfferedService represents data about a service offered by a single plan.
     For instance, in-network PCP.
@@ -60,7 +60,7 @@ class LiteralService(namedtuple('LiteralService',
         '''
         return cls(
             requested_service.cost,
-            offered_service.type.mod,
+            offered_service.mod,
             offered_service.ignore_deductible)
 
 
