@@ -1,13 +1,13 @@
-{% load staticfiles %}
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
   <head>
     <title>FidHealth</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <!--<link href="C:/Users/Nate/FidHealth/FidHealth/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">-->
-    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
-    <link rel="stylesheet" type="text/css" href="{% static 'HealthSimStyle.css' %}">
+    <link href="C:/Users/Nate/FidHealth/FidHealth/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">-->
+    <!--<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">-->
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'HealthSimStyle.css' %}">-->
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -26,8 +26,8 @@
         }
       }
     </style>
-    <script type='text/javascript' src="{% static 'jquery-1.11.1.min.js' %}"></script>
-    <!--<script type='text/javascript' src="C:/Users/Nate/FidHealth/FidHealth/static/jquery-1.11.1.min.js"></script>-->
+    <!--<script type='text/javascript' src="{% static 'jquery-1.11.1.min.js' %}"></script>-->
+    <script type='text/javascript' src="C:/Users/Nate/FidHealth/FidHealth/static/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             var ajax_service_list_input_0 = "1";
@@ -103,7 +103,7 @@
           $('#selected_services').append("<li id=\"" + (++counter) + "\" name=\"" + name + "\"> \
                                             <div class=\"row\"> \
                                               <div class=\"span5\">" + name + "</div> \
-                                              <div class=\"span4\">Cost ($) <input type=\"number\" step=\"0.01\" name=\"cost\" placeholder=\"0.00\"></div> \
+                                              <div class=\"form-group span4\">Cost ($) <input class=\"form-control\" type=\"number\" step=\"0.01\" name=\"cost\" placeholder=\"0.00\"></div> \
                                               <div class=\"checkbox span2\"><label><input type=\"checkbox\" name=\"in_network\" checked> In network</label></div> \
                                               <div class=\"span1\"><button class=\"btn btn-mini btn-primary\" onclick=\"removeService(" + counter + ")\" type=\"button\" style=\"float: right;\">Remove</button></div> \
                                             </div> \
@@ -146,8 +146,8 @@
 
     </div><!--/.fluid-container-->
     <script src="http://code.jquery.com/jquery.js"></script>
-    <!--<script src="C:/Users/Nate/FidHealth/FidHealth/static/bootstrap//bootstrap.min.js"></script>-->
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="C:/Users/Nate/FidHealth/FidHealth/static/bootstrap//bootstrap.min.js"></script>
+    <!--<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>-->
 
 
 Hello, team No0bs!
