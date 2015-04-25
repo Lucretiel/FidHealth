@@ -162,6 +162,8 @@ class NetworkDetails:
         oop_maximum = self.out_of_pocket_max
         year_out_of_pocket = 0
 
+        print("Deductible is {}, OOP max is {}".format(deductible, oop_maximum))
+
         for service in services:
             if isinstance(service, Service):
                 if service.in_network != self.in_network:
@@ -176,9 +178,11 @@ class NetworkDetails:
                 # `pre_deduct` is the amount applied to the deductible.
                 # `deductible` is the remaining deductible
                 # `cost` is any remaining cost after the deductible
+                print("Paying {} toward deductible".format(service.cost))
                 pre_deduct, deductible, cost = apply_to_threshold(
                     deductible,
                     service.cost)
+                print("{} deductible remaining".format(deductible))
 
                 # Update the out of pocket maximum
                 # `pocket_cost` is the amount allowed by the out of pocket max.
@@ -186,6 +190,7 @@ class NetworkDetails:
                 pocket_cost, oop_maximum = at_threshold(
                     oop_maximum,
                     pre_deduct)
+
                 year_out_of_pocket += pocket_cost
 
             # Apply the mod (coinsurance or copay) to the cost after or
@@ -193,9 +198,13 @@ class NetworkDetails:
             # maximum
             # `pocket_cost` is the amount allowed by the out of pocket max
             # `oop_maximum` is the remaining out of pocket maximum
+            print("Made copay/coinsure of {} for cost {}".format(
+                service.mod(cost), cost))
             pocket_cost, oop_maximum = at_threshold(
                 oop_maximum,
                 service.mod(cost))
+
+            print("{} out of pocket remaining".format(oop_maximum))
             year_out_of_pocket += pocket_cost
 
         return NetworkSimResult(year_out_of_pocket, deductible, oop_maximum)
