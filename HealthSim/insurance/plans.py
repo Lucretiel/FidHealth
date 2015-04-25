@@ -338,7 +338,7 @@ class GlobalPlans:
                         'a' : OfferedService(covered()),
                         'ic' : OfferedService(copay(100)),
                         'os' : OfferedService(covered()),
-                        'ohe' : OfferedService(coverd()),
+                        'ohe' : OfferedService(covered()),
                         'mhsi' : OfferedService(copay(100)),
                         'mhso' : OfferedService(copay(30)),
                         'adasi' : OfferedService(copay(100)),
