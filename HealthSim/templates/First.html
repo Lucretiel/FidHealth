@@ -5,9 +5,9 @@
     <title>FidHealth</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <!---<link href="C:/Users/Chaitanya/Documents/GitHub/FidHealth/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">-->
-    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
-    <link rel="stylesheet" type="text/css" href="{% static 'HealthSimStyle.css' %}">
+    <link href="C:/Users/Nate/FidHealth/FidHealth/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <!--<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">-->
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'HealthSimStyle.css' %}">-->
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -27,8 +27,7 @@
       }
     </style>
     <!--<script type='text/javascript' src="{% static 'jquery-1.11.1.min.js' %}"></script>-->
-    <!--<script type='text/javascript' src="C:/Users/Chaitanya/Documents/GitHub/FidHealth/static/jquery-1.11.1.min.js"></script>-->
-    <script type='text/javascript' src="{% static 'jquery-1.11.1.min.js' %}"></script>
+    <script type='text/javascript' src="C:/Users/Nate/FidHealth/FidHealth/static/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             var ajax_service_list_input_0 = "1";
@@ -63,15 +62,24 @@
                                             </li>");
             }
 
-            $("#test_ajax_button").click(function() {
+            $("#go_button").click(function() {
                 // Input for HealthSim library should be here
                 var ajax_input_0 = 1;
+
+                var myRequestedList = [];
+
+                $('#selected_services').children().each(function(){
+                  myRequestedList[j] = {"service": $(this).attr("name"),
+                                        "price": $(this).find("input[name='cost']").val(),
+                                        "in_network": $(this).find("input[name='in_network']").is(":checked")};
+                });
+
                 $.ajax({
                     url : "/HealthSim/ajax_json_0",
                     type : "POST",
                     dataType: "json",
                     data : {
-                        client_ajax_input_0 : ajax_input_0,
+                        "me" : { myRequestedList },
                         csrfmiddlewaretoken: '{{ csrf_token }}'
                     },
                     success : function(json) {
@@ -88,13 +96,14 @@
         var counter = 0;
 
         function addService(name) {
-          $('#selected_services').append("<li id=\"" + (++counter) + "\"> \
-                                      <form class=\"form-horizontal\"> \
-                                          <h4 class=\"enter-number\">" + name + 
-                                          "<button class=\"btn btn-mini btn-primary\" onclick=\"removeService(" + counter + ")\" type=\"button\" style=\"float: right;\">Remove</button> \
-                                          </h4> \
-                                      </form> \
-                                   </li>");
+          $('#selected_services').append("<li id=\"" + (++counter) + "\" name=\"" + name + "\"> \
+                                            <div class=\"row\"> \
+                                              " + name + " \
+                                              Cost: <input type=\"text\" name=\"cost\" value=\"10\"> \
+                                              In network: <input type=\"checkbox\" name=\"in_network\" checked> \
+                                              <button class=\"btn btn-mini btn-primary\" onclick=\"removeService(" + counter + ")\" type=\"button\" style=\"float: right;\">Remove</button> \
+                                            </div> \
+                                          </li>");
         }
 
         function removeService(id) {
@@ -104,7 +113,7 @@
         }
 
     </script>
-    <img src="{% static 'Symbol.png' %}" width="1800" height="14000" />
+    <!--<img src="{% static 'Symbol.png' %}" width="1800" height="14000" />-->
   </head>
   <body>
     <div class="container-fluid">
@@ -123,10 +132,8 @@
             <h4>YOUR SELECTED SERVICES</h4>
               <ul id="selected_services" class="nav nav-list"></ul>
 
-
-
               <div class="span3">
-                <button id="test_ajax_button" class="btn btn-large btn-block btn-primary" type="button">GO</button>
+                <button id="go_button" class="btn btn-large btn-block btn-primary" type="button">GO</button>
             </div>
           </div>
       <hr>
@@ -137,8 +144,8 @@
 
     </div><!--/.fluid-container-->
     <script src="http://code.jquery.com/jquery.js"></script>
-    <!--<script src="C:/Users/Tanmay/Documents/GitHub/FidHealth/static/bootstrap//bootstrap.min.js"></script>-->
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="C:/Users/Nate/FidHealth/FidHealth/static/bootstrap//bootstrap.min.js"></script>
+    <!--<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>-->
 
 
 Hello, team No0bs!
