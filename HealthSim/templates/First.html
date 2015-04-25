@@ -94,22 +94,22 @@
                         $('#result').html("<div class=\"span3\"> </div> \
                                              <div class=\"span9\"> \
                                               <div class=\"row\"> \
-                                                <div class=\"span3\">Out of Pocket</div> \
-                                                <div class=\"span3\">Services</div> \
-                                                <div class=\"span3\">Premiums</div> \
-                                                <div class=\"span3\">HSA-remaining</div> \
+                                                <div class=\"span2\">Out of Pocket</div> \
+                                                <div class=\"span2\">Services</div> \
+                                                <div class=\"span2\">Premiums</div> \
+                                                <div class=\"span2\">HSA-remaining</div> \
                                               </div>\
                                               <div class=\"row\"> \
-                                                <div class=\"span3\">" + json.HDHP['out_of_pocket'] + "</div> \
-                                                <div class=\"span3\">" + json.HDHP['services'] + "</div> \
-                                                <div class=\"span3\">" + json.HDHP['premiums'] + "</div> \
-                                                <div class=\"span3\">" + json.HDHP['hsa_remaining'] + "</div> \
+                                                <div class=\"span2\">" + json.HDHP['out_of_pocket'] + "</div> \
+                                                <div class=\"span2\">" + json.HDHP['services'] + "</div> \
+                                                <div class=\"span2\">" + json.HDHP['premiums'] + "</div> \
+                                                <div class=\"span2\">" + json.HDHP['hsa_remaining'] + "</div> \
                                               </div> \
                                               <div class=\"row\"> \
-                                                <div class=\"span3\">" + json.POS['out_of_pocket'] + "</div> \
-                                                <div class=\"span3\">" + json.POS['services'] + "</div> \
-                                                <div class=\"span3\">" + json.POS['premiums'] + "</div> \
-                                                <div class=\"span3\">" + json.POS['hsa_remaining'] + "</div> \
+                                                <div class=\"span2\">" + json.POS['out_of_pocket'] + "</div> \
+                                                <div class=\"span2\">" + json.POS['services'] + "</div> \
+                                                <div class=\"span2\">" + json.POS['premiums'] + "</div> \
+                                                <div class=\"span2\">" + json.POS['hsa_remaining'] + "</div> \
                                               </div> \
                                              </div>");
                     },
@@ -193,8 +193,10 @@
 
     <br>
 
-    <div id="result">
+    <div id="result" class="row-fluid">
     </div>
+
+    <br>
 
     <form action="." method="post">{% csrf_token %}
     <footer>
