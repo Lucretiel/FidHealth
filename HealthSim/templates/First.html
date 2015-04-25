@@ -107,8 +107,8 @@
           $('#selected_services').append("<li id=\"" + (++counter) + "\" name=\"" + name + "\"> \
                                             <div class=\"row\"> \
                                               <div class=\"span5\">" + name + "</div> \
-                                              <div class=\"span4\">Cost: <input type=\"text\" name=\"cost\" value=\"10\"></div> \
-                                              <div class=\"span2\">In network: <input type=\"checkbox\" name=\"in_network\" checked></div> \
+                                              <div class=\"span4\">Cost ($) <input type=\"number\" step=\"0.01\" name=\"cost\" placeholder=\"0.00\"></div> \
+                                              <div class=\"checkbox span2\"><label><input type=\"checkbox\" name=\"in_network\" checked> In network</label></div> \
                                               <div class=\"span1\"><button class=\"btn btn-mini btn-primary\" onclick=\"removeService(" + counter + ")\" type=\"button\" style=\"float: right;\">Remove</button></div> \
                                             </div> \
                                           </li>");
