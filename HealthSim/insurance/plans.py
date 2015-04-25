@@ -19,6 +19,7 @@ def dump_trace(func):
         except Exception:
             traceback.print_exc()
             raise
+    return wrapper
 
 
 def copay(amount):
