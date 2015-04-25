@@ -292,7 +292,7 @@ global_service_names = {
 
 }
 
-def convert_services(service):
+def convert_services(services):
     '''
     Convert the services dict from the frontend request into list of services
     '''
