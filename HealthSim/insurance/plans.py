@@ -82,8 +82,10 @@ class Service(namedtuple('Service', ('name', 'cost', 'in_network'))):
     `cost` is the "sticker price" of the service.
     `in_network` is the
     '''
-    def __new__(cls, type, cost, in_network=True):
-        return super().__new__(cls, type, cost, in_network)
+    def __new__(cls, name, cost, in_network=True):
+        if name not in global_service_names:
+            name = global_service_names_reverse[name]
+        return super().__new__(cls, name, cost, in_network)
 
 
 def apply_to_threshold(threshold, cost):
@@ -311,8 +313,9 @@ global_service_names = {
     'mog' : "Mail Order Generic Drugs",
     'mob' : "Mail Order Brand Name Drugs",
     'monf' : "Mail Order Non-Formulary Brand-name drugs",
-
 }
+
+global_service_names_reverse = {key: value for value, key in global_service_names.items()}
 
 def convert_services(services):
     '''
