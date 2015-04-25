@@ -540,7 +540,8 @@ class GlobalPlans:
 
     def run_simulations(self, services):
         services = list(convert_services(services))
-        return { plan: plan.run_sim(services) for plan in self.plans.values() }
+        return { plan: plan.run_sim(services)._asdict()
+            for plan in self.plans.values() }
 
 
 plans = GlobalPlans()
