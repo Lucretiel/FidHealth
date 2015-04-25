@@ -185,7 +185,7 @@ class NetworkDetails:
                 service.mod(cost))
             year_out_of_pocket += pocket_cost
 
-        return SimResult(year_out_of_pocket, deductible, oop_maximum)
+        return NetworkSimResult(year_out_of_pocket, deductible, oop_maximum)
 
 
 class Plan:
