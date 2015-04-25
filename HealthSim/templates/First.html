@@ -48,7 +48,7 @@
                 success : function(json) {
                     var select_service = document.getElementById("select_service");
                     for (var i = 0; i < json.service_list.length; i++) {
-                        services.push(json.service_list[i].name);
+                        services.push(json.service_list[i]);
                     }
                 },
                 error : function(xhr, errmsg, err) {
@@ -61,8 +61,8 @@
             for (var i = 0; i < services.length; i++) {
               $("#service_list").append("<li> \
                                           <div class=\"row\"> \
-                                              <div name=\"name\" class=\"span11\">" + services[i] + "</div> \
-                                              <div class=\"span1\"><button class=\"btn btn-mini btn-primary\" onclick=\"addService('"+ services[i].replace(/'/g, "\\'") +"')\" type=\"button\" style=\"float: right;\">Add</button></div> \
+                                              <div name=\"name\" class=\"span11\" fh_service=\"" + services[i].service + "\">" + services[i].name + "</div> \
+                                              <div class=\"span1\"><button class=\"btn btn-mini btn-primary\" onclick=\"addService('"+ services[i].name.replace(/'/g, "\\'") + ", " + services[i].service + "')\" type=\"button\" style=\"float: right;\">Add</button></div> \
                                           </div> \
                                         </li>");
             }
@@ -75,7 +75,7 @@
                 var myRequestedDict = [];
 
                 $('#selected_services').children().each(function(){
-                  myRequestedList.push({"service": $(this).attr("name"),
+                  myRequestedList.push({"service": $(this).attr("fh_service"),
                                         "price": parseFloat($(this).find("input[name='cost']").val()) || 0,
                                         "in_network": $(this).find("input[name='in_network']").is(":checked")});
                 });
@@ -134,8 +134,8 @@
 
         var counter = 0;
 
-        function addService(name) {
-          $('#selected_services').append("<li id=\"" + (++counter) + "\" name=\"" + name + "\"> \
+        function addService(name, serviceId) {
+          $('#selected_services').append("<li id=\"" + (++counter) + "\" name=\"" + name + "\" fh_service=\"" + serviceId + "\"> \
                                             <div class=\"row\"> \
                                               <div class=\"span5\">" + name + "</div> \
                                               <div class=\"form-group span4\">Cost ($) <input type=\"number\" step=\"0.01\" name=\"cost\" placeholder=\"0.00\"></div> \
