@@ -56,6 +56,8 @@
                 }
             });
 
+            services.sort();
+
             for (var i = 0; i < services.length; i++) {
               $("#service_list").append("<li> \
                                           <div class=\"row\"> \
@@ -100,7 +102,6 @@
                                                 <div class=\"span2\">Premiums</div> \
                                                 <div class=\"span2\">HSA-remaining</div> \
                                               </div>";
-                        //var jsonObj = $.parseJSON(json.d);
                         $.each(jsonObj, function(key, value) {
                           outputTable += "<div class=\"row\"> \
                                             <div class=\"span2\">" + key + "</div> \
