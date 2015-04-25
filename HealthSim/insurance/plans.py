@@ -396,7 +396,9 @@ class GlobalPlans:
                         'b' : OfferedService(coinsure(20)),
                         'mjat' : OfferedService(coinsure(20)),
                         'cis' : OfferedService(coinsure(20)),
-                        'r' : OfferedService(not_covered())
+                        'rg' : OfferedService(not_covered()),
+                        'rb' : OfferedService(not_covered()),
+                        'rnf' : OfferedService(not_covered()),
                     })),
             'HDHP': Plan(
                 premium=15,
