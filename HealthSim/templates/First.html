@@ -70,15 +70,12 @@
 
                 $('#selected_services').children().each(function(){
                   myRequestedList.push({"service": $(this).attr("name"),
-                                        "price": $(this).find("input[name='cost']").val(),
+                                        "price": parseFloat($(this).find("input[name='cost']").val()) || 0,
                                         "in_network": $(this).find("input[name='in_network']").is(":checked")});
                 });
 
+                // Update family members. Only "me" for now
                 myRequestedDict.me = myRequestedList;
-                console.log(myRequestedList);
-                console.log(JSON.stringify(myRequestedList));
-                console.log(myRequestedDict);
-
 
                 $.ajax({
                     url : "/HealthSim/ajax_json_0",
@@ -86,12 +83,11 @@
                     dataType: "json",
                     data : {
                         client_ajax_input_0 : ajax_input_0,
-                        //client_input_dict : myRequestedDict,
                         client_input_dict : JSON.stringify(myRequestedList),
                         csrfmiddlewaretoken: '{{ csrf_token }}'
                     },
                     success : function(json) {
-                        $('#result').text( 'Received server response: ' + json.response_item_0 + "  " + json.response_item_1 );
+                        $('#result').text( 'Received server response: ' + json.HDHP['out_of_pocket'] + "  " + json.POS );
                     },
                     error : function(xhr, errmsg, err) {
                         alert(xhr.status + ": " + xhr.responseText);
