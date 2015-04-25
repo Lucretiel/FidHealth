@@ -42,7 +42,7 @@
                 dataType: "json",
                 async: false,
                 data : {
-                    client_ajax_input_0 : ajax_service_list_input_0,
+                    client_ajax_input_0 : ajax_service_list_input_0,  
                     csrfmiddlewaretoken: '{{ csrf_token }}'
                 },
                 success : function(json) {
@@ -55,6 +55,8 @@
                     alert(xhr.status + ": " + xhr.responseText);
                 }
             });
+
+            services.sort();
 
             for (var i = 0; i < services.length; i++) {
               $("#service_list").append("<li> \
@@ -90,28 +92,29 @@
                         client_input_dict : JSON.stringify(myRequestedList),
                         csrfmiddlewaretoken: '{{ csrf_token }}'
                     },
-                    success : function(json) {
-                        $('#result').html("<div class=\"span3\"> </div> \
+                    success : function(jsonObj) {
+                        var outputTable = "<div class=\"span3\"> </div> \
                                              <div class=\"span9\"> \
                                               <div class=\"row\"> \
+                                                <div class=\"span2\">Plan Name</div> \
                                                 <div class=\"span2\">Out of Pocket</div> \
                                                 <div class=\"span2\">Services</div> \
                                                 <div class=\"span2\">Premiums</div> \
                                                 <div class=\"span2\">HSA-remaining</div> \
-                                              </div>\
-                                              <div class=\"row\"> \
-                                                <div class=\"span2\">" + json.HDHP['out_of_pocket'] + "</div> \
-                                                <div class=\"span2\">" + json.HDHP['services'] + "</div> \
-                                                <div class=\"span2\">" + json.HDHP['premiums'] + "</div> \
-                                                <div class=\"span2\">" + json.HDHP['hsa_remaining'] + "</div> \
-                                              </div> \
-                                              <div class=\"row\"> \
-                                                <div class=\"span2\">" + json.POS['out_of_pocket'] + "</div> \
-                                                <div class=\"span2\">" + json.POS['services'] + "</div> \
-                                                <div class=\"span2\">" + json.POS['premiums'] + "</div> \
-                                                <div class=\"span2\">" + json.POS['hsa_remaining'] + "</div> \
-                                              </div> \
-                                             </div>");
+                                              </div>";
+                        $.each(jsonObj, function(key, value) {
+                          outputTable += "<div class=\"row\"> \
+                                            <div class=\"span2\">" + key + "</div> \
+                                            <div class=\"span2\">" + value['out_of_pocket'] + "</div> \
+                                            <div class=\"span2\">" + value['services'] + "</div> \
+                                            <div class=\"span2\">" + value['premiums'] + "</div> \
+                                            <div class=\"span2\">" + value['hsa_remaining'] + "</div> \
+                                          </div>";
+                        });
+
+                        outputTable += "</div>";
+
+                        $('#result').html( outputTable );
                     },
                     error : function(xhr, errmsg, err) {
                         alert(xhr.status + ": " + xhr.responseText);
